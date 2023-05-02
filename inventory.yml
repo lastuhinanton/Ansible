@@ -10,26 +10,37 @@
 #       ansible_host: 51.250.1.8
 #       ansible_ssh_user: user
 
+
 flore_1:
   hosts:
     vm01:
-      ansible_host: 84.201.156.120
-      ansible_ssh_user: master
+      ansible_host: 158.160.47.83
 
 flore_2:
   hosts:
     vm02:
-      ansible_host: 158.160.34.253
-      ansible_ssh_user: user
+      ansible_host: 158.160.62.91
 
 flore_3:
   hosts:
     vm03:
-      ansible_host: 51.250.1.8
-      ansible_ssh_user: user
+      ansible_host: 62.84.127.109
 
-school:
+main:
   children:
     flore_1:
+  vars:
+    ansible_ssh_user: master
+
+managed:
+  children:
     flore_2:
     flore_3:
+  vars:
+    ansible_ssh_user: user
+  
+school:
+  children:
+    main:
+    managed:
+    
