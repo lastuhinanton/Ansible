@@ -1,0 +1,35 @@
+# mynodes:
+#   hosts:
+#     vm01:
+#       ansible_host: 84.201.156.120
+#       ansible_ssh_user: master
+#     vm02:
+#       ansible_host: 158.160.34.253
+#       ansible_ssh_user: user
+#     vm03:
+#       ansible_host: 51.250.1.8
+#       ansible_ssh_user: user
+
+flore_1:
+  hosts:
+    vm01:
+      ansible_host: 84.201.156.120
+      ansible_ssh_user: master
+
+flore_2:
+  hosts:
+    vm02:
+      ansible_host: 158.160.34.253
+      ansible_ssh_user: user
+
+flore_3:
+  hosts:
+    vm03:
+      ansible_host: 51.250.1.8
+      ansible_ssh_user: user
+
+school:
+  children:
+    flore_1:
+    flore_2:
+    flore_3:

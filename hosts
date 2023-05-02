@@ -1,0 +1,12 @@
+[main]
+84.201.156.120
+
+[mynodes]
+158.160.34.253
+51.250.1.8
+
+[main:vars]
+ansible_ssh_user=master
+
+[mynodes:vars]
+ansible_ssh_user=user
