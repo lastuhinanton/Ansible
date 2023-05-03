@@ -13,7 +13,7 @@ def initansible():
         for i in range(1, count+1):
             subprocess.run(['docker', 'run', '-itd', f'--name={name}_{i}', 'managed'], stdout=subprocess.PIPE)
             subprocess.check_call(['docker', 'inspect', '-f', '{{ .NetworkSettings.IPAddress }}', f'{name}_{i}'], stdout=f)
-            print(i); sleep(0.3); os.system('clear')
+            print(i); sleep(0.2); os.system('clear')
         print(f"Succesfully created {count} containers\n")
 
 def delete_containers():
@@ -23,14 +23,14 @@ def delete_containers():
     print()
     for i in range(1, count+1):
         subprocess.run(['docker', 'rm', '-f', f'{name}_{i}'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        print(i); sleep(0.3); os.system('clear')
+        print(i); sleep(0.2); os.system('clear')
     print(f"Succesfully deleted {count} containers\n")
 
 def choises():
     print()
     print("1. Initansible")
     print("2. Delete containers")
-    print("3. Delete inventory & playbook")
+    print("3. Delete inventory & playbook & tmp")
     print("4. Exit\n")
 
 def create_inventory(filename, ip_s, group):
@@ -43,8 +43,8 @@ def create_inventory(filename, ip_s, group):
             file.write(f"    vm{idx}:\n")
             file.write(f"      ansible_host: {i}\n")
         file.write("  vars:\n")
-        file.write(f"     ansible_ssh_user: {login}\n")
-        file.write(f"     ansible_ssh_pass: {password}\n")
+        file.write(f"     ansible_user: {login}\n")
+        file.write(f"     ansible_pass: {password}\n")
 
 def inventory():
     ip_s = list()
@@ -54,12 +54,11 @@ def inventory():
         for line in file:
             ip_s.append(line[:-1])
     create_inventory(filename, ip_s, group)
-
-
-def delete_inventory_playbook():
+    
+def delete_inventory_playbook_tmp():
     inventory = input("Write down the name of the inventory... ")
     playbook = input("Write down the name of the playbook... ")
-    subprocess.run(['rm', '-f', f'{inventory}.yml', f'{playbook}.yml'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    subprocess.run(['rm', '-f', f'{inventory}.yml', f'{playbook}.yml', 'file.tmp'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 if __name__ == "__main__":
     choises()
@@ -70,6 +69,6 @@ if __name__ == "__main__":
     elif point == '2':
         delete_containers()
     elif point == '3':
-        delete_inventory_playbook()
+        delete_inventory_playbook_tmp()
     else:
         sys.exit(0)
