@@ -44,7 +44,7 @@ def create_inventory(filename, ip_s, group):
             file.write(f"      ansible_host: {i}\n")
         file.write("  vars:\n")
         file.write(f"     ansible_user: {login}\n")
-        file.write(f"     ansible_pass: {password}\n")
+        file.write(f"     ansible_password: {password}\n")
 
 def inventory():
     ip_s = list()
