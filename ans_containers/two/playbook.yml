@@ -1,0 +1,32 @@
+---
+- name: Ansible nginx
+  hosts: first
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: latest
+      tags: nginx_service
+
+    - name: Copy configuration file
+      template:
+        src: index.html 
+        dest: /usr/share/nginx/html
+      become: true
+      notify:
+        - restart nginx
+    
+    - name: Check nginx service is running and enabled
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+      become: true
+      tags: nginx_service
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+      become: true
