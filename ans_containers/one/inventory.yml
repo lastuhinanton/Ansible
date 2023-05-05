@@ -1,26 +1,25 @@
-flore_1:
+first:
   hosts:
-    vm01:
+    vm0:
       ansible_host: 172.17.0.2
-
-flore_2:
-  hosts:
-    vm02:
+    vm1:
       ansible_host: 172.17.0.3
-
-flore_3:
-  hosts:
-    vm03:
+    vm2:
       ansible_host: 172.17.0.4
-
-
-school:
-  children:
-    flore_1:
-    flore_2:
-    flore_3:
+    vm3:
+      ansible_host: 172.17.0.5
+    vm4:
+      ansible_host: 172.17.0.6
+    vm5:
+      ansible_host: 172.17.0.7
+    vm6:
+      ansible_host: 172.17.0.8
+    vm7:
+      ansible_host: 172.17.0.9
+    vm8:
+      ansible_host: 172.17.0.10
+    vm9:
+      ansible_host: 172.17.0.11
   vars:
-    ansible_ssh_user: user
-    ansible_ssh_pass: 123456789
-    # ansible_become_pass: 1
-
+    ansible_user: root
+    ansible_password: 123456789
