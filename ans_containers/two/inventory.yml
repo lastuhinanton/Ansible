@@ -1,0 +1,7 @@
+first:
+  hosts:
+    vm01:
+      ansible_host: 84.252.128.211
+  vars:
+    ansible_user: user
+    ansible_password: 123456789

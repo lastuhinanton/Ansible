@@ -1,0 +1,16 @@
+---
+# tasks file for nginx_role
+- name: install nginx
+  apt: name=nginx state=latest
+
+- name: copy index.html template
+  template:
+    src: index.html
+    dest: /var/www/html
+  notify: restart nginx
+
+- name: enable and start service
+  service:
+    name: nginx
+    enabled: yes
+    state: started

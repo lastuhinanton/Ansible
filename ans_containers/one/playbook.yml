@@ -1,0 +1,19 @@
+---
+- name: Manipulation with files
+  hosts: first
+
+  tasks:
+    - name: Ensure file with the name 'school' is created
+      ansible.builtin.file:
+        dest: /home/user/school
+        state: touch
+        mode: "0777"
+    - name: Give a file 0642 mode permission
+      ansible.builtin.file:
+        dest: /home/user/school
+        mode: "0642"
+    - name: Change a user and a group of the file on user
+      ansible.builtin.file:
+        dest: /home/user/school
+        owner: user
+        group: user

@@ -7,7 +7,7 @@ from time import sleep
 def initansible(count, name):
     with open(f"file.tmp", "wb") as f:
         for i in range(1, count+1):
-            subprocess.run(['docker', 'run', '-itd', f'--name={name}_{i}', 'managed'], stdout=subprocess.PIPE)
+            subprocess.run(['docker', 'run', '--privileged', '-itd', f'--name={name}_{i}', 'managed'], stdout=subprocess.PIPE)
             subprocess.check_call(['docker', 'inspect', '-f', '{{ .NetworkSettings.IPAddress }}', f'{name}_{i}'], stdout=f)
             print(i); sleep(0.1); os.system('clear')
         print(f"Succesfully created {count} containers\n")
@@ -76,10 +76,10 @@ if __name__ == "__main__":
         filename, group = question_answer_module_two()
         inventory(filename, group)
     elif point == '2':
-        initansible(10, "test")
+        initansible(3, "test")
         inventory("inventory", "first")
     elif point == '3':
-        delete_containers(10, "test")
+        delete_containers(3, "test")
     elif point == '4':
         count, name = question_answer_module()
         delete_containers(count, name)

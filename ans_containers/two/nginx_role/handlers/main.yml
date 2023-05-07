@@ -1,0 +1,5 @@
+---
+# handlers file for nginx_role
+- name: restart nginx service
+  service: name=nginx state=restarted
+  listen: "restart nginx"

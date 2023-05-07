@@ -1,0 +1,7 @@
+# Intall nginx Playbook
+- hosts: first
+  become: yes
+  roles:
+    - role: nginx_role
+      vars:
+        type_of_webserver: "NGINX2"

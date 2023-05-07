@@ -1,0 +1,5 @@
+---
+# tasks file for mysql_role
+  - name: install mysql
+    apt: name=mariadb-server state=latest
+    notify: restart nginx
