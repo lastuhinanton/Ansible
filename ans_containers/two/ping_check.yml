@@ -1,0 +1,20 @@
+---
+# - hosts: all
+#   tasks:
+#     - name: Check ping-pong
+#       ping:
+#         data: crash
+#       register: var_ping
+  
+#     # - debug:
+#     #     var: var_ping
+
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: Check ping-pong
+      ping:
+        data: test
+      register: var_ping
+    - debug:
+        var: var_ping
