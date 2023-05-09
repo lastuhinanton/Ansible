@@ -1,0 +1,68 @@
+---
+# - hosts: server
+#   become: true
+#   tasks:
+#     - name: Install nginx
+#       apt:
+#         pkg:
+#           - nginx
+#           - curl
+#         state: present
+#       tags: install_nginx
+#   vars:
+#     ansible_become_pass: 123456789
+
+# - hosts: server
+#   become: true
+#   vars:
+#     ansible_become_pass: 123456789
+#   tasks:
+#     - name: Delete multiple packages
+#       apt:
+#         name: "{{ item }}"
+#         state: absent
+#       loop:
+#         - nginx
+#         - curl
+
+# - hosts: server
+#   become: true
+#   vars:
+#     ansible_become_pass: 123456789
+#     list_of_pkgs:
+#       - nginx
+#       - curl
+#   tasks:
+#     - name: Install multiple packages
+#       apt:
+#         name: "{{ list_of_pkgs }}"
+#         state: present
+
+# - hosts: server
+#   become: true
+#   vars:
+#     ansible_become_pass: 123456789
+#   tasks:
+#     - name: update repositories cache and install nginx package
+#       apt:
+#         name: nginx
+#         update_cache: true
+#         cache_valid_time: 3600
+
+# - hosts: server
+#   become: true
+#   vars:
+#     ansible_become_pass: 123456789
+#   tasks:
+#     - name: Removing useless packages from the cache
+#       apt:
+#         autoclean: yes
+
+- hosts: server
+  become: yes
+  vars:
+    ansible_become_pass: 123456789
+  tasks:
+    - name: Removing old depencies that is no longer required
+      apt:
+        autoremove: yes
