@@ -1,0 +1,11 @@
+---
+# - hosts: all
+#   tasks:
+#     - set_fact:
+#         check_category: "{{ ansible_hostname|type_debug }}"
+#     - debug:
+#         msg: 'Variable "ansible_hostname" with value "{{ ansible_hostname }}" have category "{{ check_category }}"'
+- hosts: second
+  tasks:
+    - debug:
+        var: ansible_architecture
