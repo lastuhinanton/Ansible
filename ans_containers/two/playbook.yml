@@ -7,3 +7,16 @@
     - role: nginx_role
       vars:
         type_of_webserver: "NGINX2"
+      register: apache_status
+  tasks:
+    - debug:
+        msg: Always run this task {{ ansible_host }} {{ ansible_connection }} {{ inventory_dir }}
+      tags: always
+
+    - debug:
+        msg: Never run this task
+      tags: never
+
+    - debug:
+        msg: Unless debug or never is explicitly requested
+      tags: [never, debug]
