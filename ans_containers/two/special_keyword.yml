@@ -1,0 +1,20 @@
+---
+- hosts: first
+  become: yes
+  vars:
+    ansible_become_pass: 123456789
+    name1: ", Forest, run"
+  tasks:
+    # - include_vars: var_name.yaml
+    - debug:
+        msg: "Always run this task"
+        var: apache_status
+      tags: always
+
+    - debug:
+        msg: "Never run this task {{ name2 | default(7)}}"
+      tags: never
+
+    - debug:
+        msg: "Unless debug or never is explicitly requested {{ name3 | default(21) }}"
+      tags: [never, debug]
