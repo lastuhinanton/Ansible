@@ -17,4 +17,3 @@
     enabled: yes
     state: started
   tags: enable_nginx
-

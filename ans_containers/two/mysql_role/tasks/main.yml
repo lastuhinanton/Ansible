@@ -3,3 +3,4 @@
   - name: install mysql
     apt: name=mariadb-server state=latest
     notify: restart nginx
+    tags: install_mysql
