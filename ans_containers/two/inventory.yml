@@ -12,7 +12,8 @@ first:
 
 second:
   hosts:
-    vm1:
+    server:
       ansible_host: 89.232.167.91
   vars:
     ansible_user: user
+    ansible_password: 123456789
