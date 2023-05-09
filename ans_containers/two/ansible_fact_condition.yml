@@ -1,0 +1,12 @@
+---
+- hosts: first
+  tasks:
+    - name: When hostname is host-one, create a file named example.ini under /tmp
+      file:
+        path: /tmp/example.ini
+        state: absent
+      # when: ansible_hostname == "0ad19971e48e"
+
+    - name: This is under debug to ensure it was checked on all remote hosts
+      debug:
+        msg: Hostname is {{ ansible_hostname }}
