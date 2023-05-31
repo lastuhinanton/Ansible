@@ -22,10 +22,11 @@ def choises():
     print()
     print("1. Initansible")
     print("2. Init the cluster")
-    print("3. Delete cluster")
-    print("4. Delete containers")
-    print("5. Delete inventory & playbook & tmp")
-    print("6. Exit\n")
+    print("3. Create image of containers")
+    print("4. Delete cluster")
+    print("5. Delete containers")
+    print("6. Delete inventory & playbook & tmp")
+    print("7. Exit\n")
 
 def delete_file(filename):
     subprocess.run(['rm', '-f', f'../{sys.argv[1]}/{filename}'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -67,6 +68,9 @@ def delete_inventory_playbook_tmp():
     playbook = input("Write down the name of the playbook... ")
     subprocess.run(['rm', '-f', f'../{sys.argv[1]}/{inventory}.yml', f'../{sys.argv[1]}/{playbook}.yml', 'file.tmp'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
+def create_image():
+    subprocess.run(['docker', 'build', '-t', 'managed', '../config/'])
+
 if __name__ == "__main__":
     choises()
     point = input("What do you choose? ")
@@ -79,11 +83,13 @@ if __name__ == "__main__":
         initansible(3, "test")
         inventory("inventory", "first")
     elif point == '3':
-        delete_containers(3, "test")
+        create_image()
     elif point == '4':
+        delete_containers(3, "test")
+    elif point == '5':
         count, name = question_answer_module()
         delete_containers(count, name)
-    elif point == '5':
+    elif point == '6':
         delete_inventory_playbook_tmp()
     else:
         sys.exit(0)
