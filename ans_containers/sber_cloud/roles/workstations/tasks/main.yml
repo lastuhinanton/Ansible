@@ -1,0 +1,14 @@
+- name: install unzip
+  tags: workstation
+  package:
+    name: unzip
+  
+  # - name: install prometheus
+  #   tags: workstation
+  #   unarchive:
+  #     src: https://github.com/prometheus/prometheus/releases/download/v2.44.0/prometheus-2.44.0.windows-amd64.zip
+  #     dest: /usr/local/bin
+  #     remote_src: yes
+  #     mode: 0755
+  #     owner: root
+  #     group: root
