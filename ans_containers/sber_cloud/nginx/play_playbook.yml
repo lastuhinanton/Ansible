@@ -1,0 +1,7 @@
+---
+
+- name: "Base setup"
+  become: yes
+  hosts: all
+  roles:
+    - base
