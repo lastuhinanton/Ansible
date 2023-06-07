@@ -1,2 +1,43 @@
-- name: Test run with ping module
-  ansible.builtin.ping:
+- name: Update repositories cache
+  tags: update_rep_cache
+  ansible.builtin.package:
+    update_cache: yes
+
+- name: Ensure nginx is at the latest version
+  tags: nginx, nginx_update
+  ansible.builtin.package:
+    name: nginx
+    state: latest
+
+- name: Ensure nginx is started
+  tags: nginx, nginx_started
+  ansible.builtin.service:
+    name: nginx
+    state: started
+
+# - name: stop nginx
+#   tags: nginx, nginx_stoped
+#   service:
+#     name: nginx
+#     state: stopped
+
+# - name: ensure nginx is not installed
+#   tags: nginx, nginx_deleted
+#   ansible.builtin.package:
+#     name: nginx
+#     state: absent
+    
+
+
+# - name: Update repositories RedHat family cache
+#   ansible.builtin.yum:
+#     update_cache: yes
+#   when: ansible_os_family == "RedHat"
+
+# - name: System details
+#   debug: msg="{{ item }}"
+#   with_items: 
+#   # - "{{ ansible_distribution }}"
+#   # - "{{ ansible_distribution_version }}"
+#   # - "{{ ansible_distribution_major_version }}"
+#   - "{{ ansible_os_family }}"
