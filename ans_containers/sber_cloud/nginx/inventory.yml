@@ -1,4 +1,4 @@
-machines:
+all:
   hosts:
     ubuntu:
       ansible_host: 46.243.201.149
@@ -7,6 +7,19 @@ machines:
     debian:
       ansible_host: 87.242.91.146
     centos:
-      ansible_host: 37.230.196.183
+      ansible_host: 178.170.197.109
+
+machines:
+  children:
+    dev:
+      hosts:
+        ubuntu:
+    prestage:
+      hosts:
+        fedora:
+        debian:
+    prod:
+      hosts:
+        centos:
   vars:
     ansible_user: root
