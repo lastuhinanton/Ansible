@@ -1,0 +1,12 @@
+machines:
+  hosts:
+    ubuntu:
+      ansible_host: 46.243.201.149
+    fedora:
+      ansible_host: 178.170.242.231
+    debian:
+      ansible_host: 87.242.91.146
+    centos:
+      ansible_host: 37.230.196.183
+  vars:
+    ansible_user: root
